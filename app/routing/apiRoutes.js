@@ -14,8 +14,7 @@ module.exports = function (app) {
         console.log("----------what is-----", JSON.stringify(req.body));
 
         console.log(req.body['scores[]']);
-        res.json(true);
-
+    
 
 
         let userAns = req.body['scores[]'];
@@ -32,13 +31,14 @@ module.exports = function (app) {
                 totalDiff += Math.abs(friendsScore - userScore);
             }
 
-            if (totalDiff < CurrentDiff) {
+            if (totalDiff < currentDiff) {
                 currentDiff = totalDiff;
                 bestIndex = index;
-                res.json(friendsData.bestIndex);
+               
             }
         });
         friendsData.push(req.body);
+        res.json(friendsData[bestIndex]);
     });
 
 }
